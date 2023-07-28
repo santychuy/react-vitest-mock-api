@@ -1,8 +1,16 @@
 {
   "name": "open-dictionary",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "license": "MIT",
+  "author": "Santiago Carrasco <hi@santychuy.com>",
+  "repository": {
+    "url": "https://github.com/santychuy/react-vitest-mock-api",
+    "type": "git"
+  },
+  "homepage": "https://github.com/santychuy/react-vitest-mock-api",
+  "description": "React + Vite + Vitest + Mock Service Worker Example Project",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
