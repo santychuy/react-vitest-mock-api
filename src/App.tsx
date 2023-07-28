@@ -4,7 +4,7 @@ import { useDictionary } from './hooks/useDictionary';
 import './styles/App.css';
 
 const App = () => {
-  const { meaning, setWord, word, handleSearch, isLoading } = useDictionary();
+  const { meaning, setWord, word, handleSearch, status } = useDictionary();
 
   return (
     <div className="container">
@@ -15,14 +15,17 @@ const App = () => {
         value={word}
         onChange={(e) => setWord(e.target.value)}
       />
-      <Button loading={isLoading} onClick={handleSearch} variant="gradient">
+      <Button
+        loading={status.isLoading}
+        onClick={handleSearch}
+        variant="gradient"
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+        disabled={!word || status.isLoading}
+      >
         Search
       </Button>
-      {meaning && (
-        <div className="result">
-          <Text>{meaning}</Text>
-        </div>
-      )}
+      {meaning && <Text>{meaning}</Text>}
+      {status.error && <Text>{status.error}</Text>}
     </div>
   );
 };
