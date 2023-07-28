@@ -22,4 +22,10 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(mockResponse));
     },
   ),
+  rest.get(
+    'https://api.dictionaryapi.dev/api/v2/entries/en/fdsakfjk',
+    (_req, res, ctx) => {
+      return res(ctx.status(404));
+    },
+  ),
 ];
