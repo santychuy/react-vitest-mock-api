@@ -1,7 +1,5 @@
 export const getMeaningWord = async (word: string) => {
-  const response = await fetch(
-    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
-  );
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/${word}`);
 
   if (!response.ok) return null;
 
