@@ -3,30 +3,27 @@ import { useState } from 'react';
 import { getMeaningWord } from '../api/getMeaningWord';
 
 export const useDictionary = () => {
-  const [word, setWord] = useState('');
-  const [meaning, setMeaning] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [word, setWord] = useState<string>();
+  const [meaning, setMeaning] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
   const handleSearch = async () => {
-    setError(undefined);
-    setMeaning('');
-    setIsLoading(true);
+    try {
+      if (!word) return;
 
-    if (!word) {
-      return setIsLoading(false);
-    }
+      setError(undefined);
+      setMeaning('');
+      setIsLoading(true);
 
-    const data = await getMeaningWord(word);
+      const data = await getMeaningWord(word);
 
-    if (!data) {
+      setMeaning(data[0].meanings[0].definitions[0].definition);
+    } catch (error) {
       setError('Word not found');
-      return setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
-
-    setMeaning(data[0].meanings[0].definitions[0].definition);
-
-    setIsLoading(false);
   };
 
   return {

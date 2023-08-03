@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div className="container">
       <Title order={1}>Open Dictionary</Title>
+      <Text>* Only word in English</Text>
       <TextInput
         placeholder="Search"
         variant="filled"
@@ -24,8 +25,8 @@ const App = () => {
       >
         Search
       </Button>
-      {meaning && <Text>{meaning}</Text>}
-      {status.error && <Text>{status.error}</Text>}
+      {meaning ?? <Text>{meaning}</Text>}
+      {status.error ?? <Text>{status.error}</Text>}
     </div>
   );
 };
