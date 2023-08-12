@@ -1,13 +1,13 @@
 import { Title, TextInput, Button, Text } from '@mantine/core';
 
 import { useDictionary } from './hooks/useDictionary';
-import './styles/App.css';
+import { container, resultContainer } from './styles/App.css';
 
 const App = () => {
   const { meaning, setWord, word, handleSearch, status } = useDictionary();
 
   return (
-    <div className="container">
+    <div className={container}>
       <Title order={1}>Open Dictionary</Title>
       <Text>* Only word in English</Text>
       <TextInput
@@ -25,8 +25,11 @@ const App = () => {
       >
         Search
       </Button>
-      {meaning ?? <Text>{meaning}</Text>}
-      {status.error ?? <Text>{status.error}</Text>}
+
+      <span className={resultContainer}>
+        {meaning ?? <Text>{meaning}</Text>}
+        {status.error ?? <Text>{status.error}</Text>}
+      </span>
     </div>
   );
 };
