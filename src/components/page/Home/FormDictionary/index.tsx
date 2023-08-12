@@ -2,7 +2,7 @@ import { TextInput, Button, Text } from '@mantine/core';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useDictionary } from '../../../../hooks/useDictionary';
+import { useDictionary } from '@/hooks/useDictionary';
 
 import { formContainer, resultContainer } from './styles.css';
 import { FormSearch, schema } from './schema';

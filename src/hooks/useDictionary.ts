@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getMeaningWord } from '../api/getMeaningWord';
+import { getMeaningWord } from '@/api/getMeaningWord';
 
 export const useDictionary = () => {
   const [meaning, setMeaning] = useState<string>();

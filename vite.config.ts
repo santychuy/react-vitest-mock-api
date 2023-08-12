@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
@@ -12,5 +13,5 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     exclude: ['**/e2e/**', '**/node_modules/**', '**/dist/**'],
   },
-  plugins: [vanillaExtractPlugin(), react()],
+  plugins: [vanillaExtractPlugin(), react(), tsconfigPaths()],
 });
