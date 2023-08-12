@@ -10,9 +10,3 @@ export const container = style({
   maxWidth: '900px',
   marginInline: 'auto',
 });
-
-export const resultContainer = style({
-  maxWidth: '500px',
-  textAlign: 'center',
-  marginTop: '1em',
-});
