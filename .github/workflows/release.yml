@@ -41,8 +41,10 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Build project
-        run: npm run build
+        run: pnpm build
       - name: Create release
         run: npx semantic-release
         env:
