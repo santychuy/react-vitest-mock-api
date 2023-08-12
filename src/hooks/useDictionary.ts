@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { getMeaningWord } from '../api/getMeaningWord';
 
 export const useDictionary = () => {
-  const [word, setWord] = useState<string>();
   const [meaning, setMeaning] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
-  const handleSearch = async () => {
+  const handleSearch = async (word: string) => {
     try {
       if (!word) return;
 
@@ -27,8 +26,6 @@ export const useDictionary = () => {
   };
 
   return {
-    word,
-    setWord,
     meaning,
     handleSearch,
     status: {
