@@ -12,6 +12,7 @@ const FormDictionary = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm<FormSearch>({
     resolver: zodResolver(schema),
     mode: 'onChange',
@@ -21,6 +22,7 @@ const FormDictionary = () => {
 
   const onSubmit: SubmitHandler<FormSearch> = ({ searchWord }) => {
     handleSearch(searchWord);
+    reset();
   };
 
   return (
