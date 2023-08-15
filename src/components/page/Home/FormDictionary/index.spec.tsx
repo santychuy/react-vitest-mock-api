@@ -1,12 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import ErrorSection from '../ErrorSection';
 
 import FormDictionary from '.';
 
 describe('<FormDictionary />', () => {
   it('should render correctly', () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     expect(screen.getByText(/Search/i)).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
@@ -14,7 +21,11 @@ describe('<FormDictionary />', () => {
   });
 
   it('should type in input, search and get definition of dog', async () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /search/i });
@@ -32,7 +43,11 @@ describe('<FormDictionary />', () => {
   });
 
   it('should type in input a random word, search and get error', async () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /search/i });
@@ -41,12 +56,18 @@ describe('<FormDictionary />', () => {
     userEvent.click(button);
 
     await waitFor(async () => {
-      expect(await screen.findByText(/Word not found/i)).toBeInTheDocument();
+      expect(
+        await screen.findByText(/Something went wrong/i),
+      ).toBeInTheDocument();
     });
   });
 
   it('should be disabled if input is empty', () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const button = screen.getByRole('button', { name: /search/i });
 
@@ -54,7 +75,11 @@ describe('<FormDictionary />', () => {
   });
 
   it('should be disabled if input is invalid after entering numbers', async () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /search/i });
@@ -67,7 +92,11 @@ describe('<FormDictionary />', () => {
   });
 
   it('should be disabled if input is invalid after entering special characters', async () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /search/i });
@@ -80,7 +109,11 @@ describe('<FormDictionary />', () => {
   });
 
   it('should be disabled if input is invalid after entering spaces', async () => {
-    render(<FormDictionary />);
+    render(
+      <ErrorBoundary fallback={<ErrorSection />}>
+        <FormDictionary />
+      </ErrorBoundary>,
+    );
 
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /search/i });
