@@ -18,7 +18,7 @@ const FormDictionary = () => {
     mode: 'onChange',
   });
 
-  const { meaning, handleSearch, status } = useDictionary();
+  const { meaning, handleSearch, isLoading } = useDictionary();
 
   const onSubmit: SubmitHandler<FormSearch> = ({ searchWord }) => {
     handleSearch(searchWord);
@@ -34,7 +34,7 @@ const FormDictionary = () => {
         {...register('searchWord')}
       />
       <Button
-        loading={status.isLoading}
+        loading={isLoading}
         variant="gradient"
         disabled={!isValid}
         type="submit"
@@ -43,8 +43,7 @@ const FormDictionary = () => {
       </Button>
 
       <span className={resultContainer}>
-        {meaning ?? <Text>{meaning}</Text>}
-        {status.error ?? <Text>{status.error}</Text>}
+        {!!meaning && <Text>{meaning}</Text>}
       </span>
     </form>
   );

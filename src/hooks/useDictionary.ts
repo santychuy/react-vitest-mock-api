@@ -1,17 +1,18 @@
 import { useState } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import { getMeaningWord } from '@/api/getMeaningWord';
 
 export const useDictionary = () => {
   const [meaning, setMeaning] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+
+  const { showBoundary } = useErrorBoundary();
 
   const handleSearch = async (word: string) => {
     try {
       if (!word) return;
 
-      setError(undefined);
       setMeaning('');
       setIsLoading(true);
 
@@ -19,7 +20,7 @@ export const useDictionary = () => {
 
       setMeaning(data[0].meanings[0].definitions[0].definition);
     } catch (error) {
-      setError('Word not found');
+      showBoundary(error);
     } finally {
       setIsLoading(false);
     }
@@ -28,9 +29,6 @@ export const useDictionary = () => {
   return {
     meaning,
     handleSearch,
-    status: {
-      error,
-      isLoading,
-    },
+    isLoading,
   };
 };
